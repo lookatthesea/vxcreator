@@ -1,38 +1,24 @@
 extends Node
 
+export(ImageTexture) var blank_icon
+export(ImageTexture) var blank_infected_icon
+export(ImageTexture) var blank_corrupted_icon
+export(ImageTexture) var blank_activated_icon
+func _ready():
+	add_vm([])
+	get_node("../BG/FolderBox").add_child(get(0)["files"]["view"])
+
 var vms = []
 func add_vm(code):
-	var f = preload("res://Scenes/VNC/Filesystem.gd").new().init()
-	f.view.rect_position = Vector2(3, 30)
-	f.view.rect_size = Vector2(463, 373)
+	var f = {'view': ItemList.new()}
+	f["view"].rect_position = Vector2(3, 30)
+	f["view"].rect_size = Vector2(463, 373)
+	f["view"].add_item("notes.txt", blank_icon, false)
+	f["view"].add_item("calendar.dat", blank_icon, false)
 	vms.append({'code': code,
 				'ip': 0,
 				'r': [],
 				'files': f})
 
-var t = 0
-var to_remove = []
-func _process(delta):
-	t += delta
-	if t <= 0.1:
-		return
-	t -= 0.1
-	to_remove = []
-	var i = 0
-	while i < vms.size():
-		vms[i]['code'][vms[i]['ip']].call_func(i)
-		vms[i]['ip'] += 1
-		if vms[i]['ip'] >= vms[i]['code'].size():
-			vms[i]['ip'] = 0
-	for i in to_remove:
-		vms.remove(i)
-
-### VM Operations ###
-
-func bye(i):
-	to_remove.append(i)
-var BYE = funcref(self, "bye")
-
-func nop(i):
-	pass
-var NOP = funcref(self, "nop")
+func get(n):
+	return vms[0]

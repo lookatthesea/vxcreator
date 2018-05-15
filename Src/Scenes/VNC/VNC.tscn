@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/VNC/VNC.gd" type="Script" id=1]
 [ext_resource path="res://Images/HorizBG.png" type="Texture" id=2]
 [ext_resource path="res://Images/filedialog.png" type="Texture" id=3]
+[ext_resource path="res://Scenes/VNC/VM.gd" type="Script" id=4]
+[ext_resource path="res://Images/VNC/blank-file.png" type="Texture" id=5]
+[ext_resource path="res://Images/VNC/blank-file-infected.png" type="Texture" id=6]
+[ext_resource path="res://Images/VNC/blank-file-corrupted.png" type="Texture" id=7]
+[ext_resource path="res://Images/VNC/blank-file-activated.png" type="Texture" id=8]
 
 [node name="VNC" type="Control" index="0"]
 
@@ -84,5 +89,14 @@ text = "Downloads"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="VM" type="Node2D" parent="." index="1"]
+
+visible = false
+script = ExtResource( 4 )
+blank_icon = ExtResource( 5 )
+blank_infected_icon = ExtResource( 6 )
+blank_corrupted_icon = ExtResource( 7 )
+blank_activated_icon = ExtResource( 8 )
 
 
