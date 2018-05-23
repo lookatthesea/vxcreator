@@ -16,6 +16,10 @@ func add_vm(code):
 			 'data': []}
 	f['view'].rect_position = Vector2(3, 30)
 	f['view'].rect_size = Vector2(463, 373)
+	f['view'].max_text_lines = 10
+	f['view'].max_columns = 10
+	f['view'].icon_mode = ItemList.ICON_MODE_TOP
+	f['view'].same_column_width = true
 	var u = {'mood': 100}
 	var vm = {	'code': code,	'ip': 0,
 				's': [],		'r': [],
@@ -27,7 +31,7 @@ func add_vm(code):
 
 func add_file(vm, name, type):
 	vm['files']['view'].add_item(name, blank_icon, false)
-	var f = {'type': 'document', 'body': null}
+	var f = {'type': type, 'body': null}
 	vm['files']['data'].append(f)
 
 func get(n):
@@ -49,6 +53,11 @@ func _process(delta):
 		return
 	for vm in vms:
 		var f = randi() % vm['files']['view'].get_item_count()
+		var use = randi() % 1
+		if use and f['type'] == 'document' and f['body']:
+			vm['user']['mood'] -= 10
+
+## VM File Operations
 
 func random_file(vm):
 	var f = randi() % vm['files']['view'].get_item_count()
