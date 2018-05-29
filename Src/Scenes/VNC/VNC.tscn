@@ -1,13 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Scenes/VNC/VNC.gd" type="Script" id=1]
 [ext_resource path="res://Images/HorizBG.png" type="Texture" id=2]
 [ext_resource path="res://Images/filedialog.png" type="Texture" id=3]
-[ext_resource path="res://Scenes/VNC/VM.gd" type="Script" id=4]
-[ext_resource path="res://Images/VNC/blank-file.png" type="Texture" id=5]
-[ext_resource path="res://Images/VNC/blank-file-infected.png" type="Texture" id=6]
-[ext_resource path="res://Images/VNC/blank-file-corrupted.png" type="Texture" id=7]
-[ext_resource path="res://Images/VNC/blank-file-activated.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/VNC/FileView.tres" type="StyleBox" id=4]
+[ext_resource path="res://Scenes/VNC/VM.gd" type="Script" id=5]
+[ext_resource path="res://Images/VNC/blank-file.png" type="Texture" id=6]
+[ext_resource path="res://Images/VNC/blank-file-infected.png" type="Texture" id=7]
+[ext_resource path="res://Images/VNC/blank-file-corrupted.png" type="Texture" id=8]
+[ext_resource path="res://Images/VNC/blank-file-activated.png" type="Texture" id=9]
 
 [node name="VNC" type="Control" index="0"]
 
@@ -90,13 +91,42 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="FileView" type="ItemList" parent="BG/FolderBox" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 25.0
+margin_top = 38.0
+margin_right = -30.0
+margin_bottom = -8.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = true
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+custom_styles/bg_focus = ExtResource( 4 )
+custom_styles/bg = ExtResource( 4 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+items = [  ]
+select_mode = 0
+allow_reselect = false
+auto_height = true
+max_columns = 30
+same_column_width = true
+icon_mode = 0
+fixed_icon_size = Vector2( 0, 0 )
+
 [node name="VM" type="Node2D" parent="." index="1"]
 
 visible = false
-script = ExtResource( 4 )
-blank_icon = ExtResource( 5 )
-blank_infected_icon = ExtResource( 6 )
-blank_corrupted_icon = ExtResource( 7 )
-blank_activated_icon = ExtResource( 8 )
+script = ExtResource( 5 )
+blank_icon = ExtResource( 6 )
+blank_infected_icon = ExtResource( 7 )
+blank_corrupted_icon = ExtResource( 8 )
+blank_activated_icon = ExtResource( 9 )
 
 
