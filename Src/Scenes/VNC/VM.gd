@@ -40,11 +40,11 @@ func do_virii():
 	for vm in vms:
 		for v in vm['virii']:
 			if v['pc'] >= vm['code'].size():
-				virus_crashes(); continue
+				virus_crashes(vm, v); continue
 			var op = vm['code'][v['pc']]
 			v['pc'] += 1
 			if not op is FuncRef:
-				virus_crashes(); continue
+				virus_crashes(vm, v); continue
 			op.call_func(vm, v)
 
 func virus_crashes(vm, v):
@@ -57,14 +57,14 @@ var V_QUIT = funcref(self, 'quit')
 
 func execute(vm, v):
 	if v['fs'].size() <= 0:
-		virus_crashes(); return
+		virus_crashes(vm, v); return
 	if (v['fs'].pop())['type'] == 'infected':
 		vm['virii'].append(virus())
 var V_EXECUTE = funcref(self, 'execute')
 
 func random_file(vm, v):
 	if vm['files'].size() <= 0:
-		virus_crashes(); return
+		virus_crashes(vm, v); return
 	v['fs'].append(vm['files'][randi() % vm['files'].size()])
 var V_RANDOM_FILE = funcref(self, 'random_file')
 
