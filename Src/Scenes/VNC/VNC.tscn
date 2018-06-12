@@ -129,18 +129,18 @@ blank_infected_icon = ExtResource( 7 )
 blank_corrupted_icon = ExtResource( 8 )
 blank_activated_icon = ExtResource( 9 )
 
-[node name="UserTimer" type="Timer" parent="." index="2"]
-
-process_mode = 1
-wait_time = 2.0
-one_shot = false
-autostart = true
-
-[node name="VirusTimer" type="Timer" parent="." index="3"]
+[node name="VirusTimer" type="Timer" parent="." index="2"]
 
 process_mode = 1
 wait_time = 0.5
 one_shot = false
-autostart = true
+autostart = false
+
+[node name="DisplayTimer" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 0.25
+one_shot = false
+autostart = false
 
 
